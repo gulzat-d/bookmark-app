@@ -1,6 +1,6 @@
-export interface IProfile {
-  id: number;
-  name: string;
-  email: string;
-  avatar: string;
+export type TProfile = {
+  id: number
+  name: string
+  email: string
+  avatar: string
 }

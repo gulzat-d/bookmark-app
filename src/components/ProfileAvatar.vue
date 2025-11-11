@@ -1,13 +1,19 @@
 <script setup lang="ts">
-type TProfileAvatarProps = { name: string }
-const { name } = defineProps<TProfileAvatarProps>()
+import { onMounted } from 'vue'
+import { useProfileStore } from '@/stores/profile.store'
+
+const store = useProfileStore()
+
+onMounted(() => {
+  store.fetchProfile()
+})
 </script>
 
 <template>
-  <div class="profile-avatar">
+  <div class="profile-avatar" :v-if="store.profile">
     <img src="/public/Avatar.svg" class="profile-avatar__image" alt="Изображение пользователя" />
     <div>
-      Привет, <strong>{{ name }}</strong>
+      Привет, <strong>{{ store.profile?.name }}</strong>
     </div>
   </div>
 </template>

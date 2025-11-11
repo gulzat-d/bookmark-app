@@ -1,27 +1,15 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import CategoryList from './components/CategoryList.vue';
 import ProfileAvatar from './components/ProfileAvatar.vue'
-import type { TProfile } from './interfaces/profile'
-import { useProfileStore } from './stores/profile.store'
-import { API_ROUTES } from './api'
 
-const store = useProfileStore()
 
-async function fetchProfile() {
-  const data = await fetch(API_ROUTES.profile)
-  const res = (await data.json()) as TProfile
-  store.profile = res
-}
-
-onMounted(() => {
-  fetchProfile()
-})
 </script>
 
 <template>
   <div class="app">
     <nav class="navbar">
-      <ProfileAvatar :v-if="store.profile" :name="store.profile.name" />
+      <ProfileAvatar />
+      <CategoryList />
     </nav>
     <main class="main-content">Контент</main>
   </div>
